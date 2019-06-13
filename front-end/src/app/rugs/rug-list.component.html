@@ -1,29 +1,15 @@
 <div class='card'>
-
     <div class='card-header'><b>{{title}}</b></div>
-
-    <div class='card-body'>
-        <div class='row'>
-            <div class='col'>Filter by:</div>
-            <div class='col-2'><input type="text" /></div>
-        </div>
-        <div class='row'>
-            <div class='col-3'></div>
-            <div class='col'>Filtered by: </div>
-        </div>
-    </div>
 
     <div class='table-responsive'>
         <table class='table' *ngIf='rugs && rugs.length'>
             <thead>
                 <tr>
-                    <!-- <th>
-                        <button class="btn btn primary">Press</button>
-                    </th> -->
                     <th>Rug</th>
                     <th>ID</th>
                     <th>Available</th>
                     <th>Price</th>
+                    <th><button class="btn btn primary">Delete Rug</button></th>
                 </tr>
             </thead>
 
@@ -33,6 +19,7 @@
                     <td>{{rug.id}}</td>
                     <td>{{rug.available}}</td>
                     <td>{{rug.price}}</td>
+                    <td></td>
                 </tr>
             </tbody>
 

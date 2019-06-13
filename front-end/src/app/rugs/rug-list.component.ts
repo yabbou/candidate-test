@@ -1,22 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IRug } from './rug';
+import { RugService } from './rug.service';
 
 @Component({
     selector: 'rugs',
     templateUrl: './rug-list.component.html',
     styleUrls: ['./rug-list.component.css']
 })
-export class RugListComponent {
+export class RugListComponent implements OnInit {
     title = 'Rug List';
-    rugs: any[] = [{
-        "rugName": "Persian Rug",
-        "id": 1,
-        "available": "In-stock",
-        "price": 500
-    },
-    {
-        "rugName": "African Rug",
-        "id": 2,
-        "available": "In-stock",
-        "price": 400
-    }];
+    rugs: IRug[];
+
+    constructor(private rugService: RugService) { }
+
+    ngOnInit(): void {
+        this.rugs = this.rugService.getRugs();
+    }
 }

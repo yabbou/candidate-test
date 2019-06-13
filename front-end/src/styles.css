@@ -9,6 +9,11 @@ div.card{
 .table{
     margin-top: 10px;
 }
-/* .button{
-    background-color: rgb(58, 129, 245);
-} */
+
+thead {
+    color: lightblue;
+}
+.btn{
+   color: white;
+   background-color: lightblue;
+}
