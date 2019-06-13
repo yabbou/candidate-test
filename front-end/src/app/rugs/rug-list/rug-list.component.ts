@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IRug } from './rug';
-import { RugService } from './rug.service';
+import { IRug } from '../rug';
+import { RugService } from '../rug.service';
 
 @Component({
     selector: 'rugs',

@@ -1,0 +1,29 @@
+<div class='card'>
+    <div class='card-header'><b>{{title}}</b></div>
+
+    <div class='table-responsive'>
+        <table class='table' *ngIf='rugs && rugs.length'>
+            <thead>
+                <tr>
+                    <th>Rug</th>
+                    <th>ID</th>
+                    <th>Available</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor='let rug of rugs'>
+                    <td>{{rug.rugName}}</td>
+                    <td>{{rug.id}}</td>
+                    <td>{{rug.available}}</td>
+                    <td>{{rug.price}}</td>
+                    <td><button class="btn btn primary">Edit Rug</button></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
