@@ -1,3 +1,34 @@
 <div class='card' *ngIf='rug'>
   <div class='card-header'>{{title + ': '+rug.rugName}}</div>
+
+  <div class="card-body" *ngIf="rug">
+
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-3">Name:</div>
+          <div class="col-md-6">{{rug.rugName}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">ID:</div>
+          <div class="col-md-6">{{rug.id}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Availability:</div>
+          <div class="col-md-6">{{rug.available}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Price:</div>
+          <div class="col-md-6">{{rug.price|currency:"USD":"symbol"}}</div>
+        </div>
+        
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="col-md-4">
+      <button class="btn btn-outline-secondary mr-3" style="width:80px" (click)="onBack()">
+        Back
+      </button>
+    </div>
+  </div>
 </div>

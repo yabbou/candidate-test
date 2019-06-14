@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { RugListComponent } from './rugs/rug-list/rug-list.component';
 import { RugDetailComponent } from './rugs/rug-details/rug-detail.component';
 import { HomeComponent } from './rugs/home/home.component';
+import { RugEditComponent } from './rugs/rug-edit/rug-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RugListComponent,
     RugDetailComponent,
-    HomeComponent
+    HomeComponent,
+    RugEditComponent
   ],
   imports: [
     BrowserModule,
