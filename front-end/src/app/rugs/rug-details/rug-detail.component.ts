@@ -6,7 +6,7 @@ import { IRug } from '../rug';
   styleUrls: ['./rug-detail.component.css']
 })
 export class RugDetailComponent implements OnInit {
-  title = 'Rug Detail';
+  rugDetailsTitle = "Rug Details";
   rug: IRug;
 
   constructor() { }

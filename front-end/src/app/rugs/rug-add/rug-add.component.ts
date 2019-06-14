@@ -8,7 +8,7 @@ import { IRug } from '../rug';
     styleUrls: ['./rug-add.component.css']
 })
 export class RugAddComponent implements OnInit {
-    title = 'Add Rug';
+    addRugTitle: "Add Rug";
     rugForm: FormGroup;
     rugs: IRug[];
 

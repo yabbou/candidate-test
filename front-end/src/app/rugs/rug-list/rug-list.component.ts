@@ -3,12 +3,11 @@ import { IRug } from '../rug';
 import { RugService } from '../rug.service';
 
 @Component({
-    selector: 'rugs',
-    templateUrl: './rugs.component.html',
-    styleUrls: ['./rugs.component.css']
+    templateUrl: './rug-list.component.html',
+    styleUrls: ['./rug-list.component.css']
 })
 export class RugListComponent implements OnInit {
-    title = 'Rug List';
+    rugListTitle = 'Rug List';
     rugs: IRug[];
 
     constructor(private rugService: RugService) { }
