@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder} from '@angular/forms';
-
-// import { RugService } from '../rug.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { IRug } from '../rug';
 
 @Component({
-    selector: 'add-rug',
+    selector: 'rug-add',
     templateUrl: './rug-add.component.html',
     styleUrls: ['./rug-add.component.css']
 })
-export class RugListComponent implements OnInit {
+export class RugAddComponent implements OnInit {
     title = 'Add Rug';
+    rugForm: FormGroup;
     rugs: IRug[];
 
-    // constructor(private rugService: RugService) { }
+    constructor(private builder: FormBuilder) { }
 
     ngOnInit(): void {
-        // this.rugs = this.rugService.getRugs();
+        this.rugForm = this.builder.group({
+            rugName: '',
+            id: 0,
+            available: '',
+            price: 0
+        })
     }
 }

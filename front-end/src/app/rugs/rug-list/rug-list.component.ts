@@ -4,8 +4,8 @@ import { RugService } from '../rug.service';
 
 @Component({
     selector: 'rugs',
-    templateUrl: './rug-list.component.html',
-    styleUrls: ['./rug-list.component.css']
+    templateUrl: './rugs.component.html',
+    styleUrls: ['./rugs.component.css']
 })
 export class RugListComponent implements OnInit {
     title = 'Rug List';
