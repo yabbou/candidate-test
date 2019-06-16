@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rug-edit.component.css']
 })
 export class RugEditComponent implements OnInit {
-
+  title = 'Add Rug';
   constructor() { }
 
   ngOnInit() {

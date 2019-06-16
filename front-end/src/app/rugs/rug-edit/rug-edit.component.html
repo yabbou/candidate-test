@@ -1,3 +1,34 @@
-<p>
-  rug-edit works!
-</p>
+<div class="card">
+  <div class="card-header">{{title}}</div>
+
+  <div class="card-body">
+
+    <form>
+      <div class="form-group row mb-2">
+        <label class=" col-md-2 col-form-label">Rug Name</label>
+        <div><input class="form-control" type=" text" placeholder="Name (Required)" [(ngModel)]="rug.rugName"
+          #nameVar="ngModel" formContorlName="rugName" /></div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2">ID</label>
+        <div><input class="form-control" type=" text" placeholder="ID (Required)" /></div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2">Availability</label>
+        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock" /></div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2">Price</label>
+        <div><input class="form-control" type=" text" placeholder="Price (Required)" /></div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+
+  </div>
+</div>

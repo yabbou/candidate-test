@@ -3,7 +3,7 @@
 
     <div class='table-responsive'>
         <table class='table' *ngIf='rugs && rugs.length'>
-            <!-- <thead> -->
+            <thead>
                 <tr>
                     <th>Rug</th>
                     <th>ID</th>
@@ -11,7 +11,7 @@
                     <th>Price</th>
                     <th></th>
                 </tr>
-            <!-- </thead> -->
+            </thead>
 
             <tbody>
                 <tr *ngFor='let rug of rugs'>
@@ -19,9 +19,11 @@
                     <td>{{rug.id}}</td>
                     <td>{{rug.availability}}</td>
                     <td>{{rug.price|currency:"USD":"symbol"}}</td>
-                    <td><button class="btn btn-outline-secondary">Edit</button></td>
-                    <!-- <button class="btn btn-outline-secondary mr-3" style="width:80px" (click)="onBack()"> -->
-
+                    <td>
+                        <button class="btn btn-outline-primary">
+                            Remove
+                        </button>
+                    </td>
                 </tr>
             </tbody>
 
