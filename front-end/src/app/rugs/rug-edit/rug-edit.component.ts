@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { RugService } from '../rug.service';
 import { Rug } from '../rug';
 
 @Component({
@@ -12,22 +13,22 @@ export class RugEditComponent implements OnInit {
   rugForm: FormGroup;
   rug = new Rug();
 
-  constructor(private builder: FormBuilder) {
-    // this.createForm();
+  constructor(private builder: FormBuilder, private service: RugService) {
+    this.createForm();
   }
 
-  // createForm() {
-  //   this.rugForm = this.builder.group({
-  //     name: ['', Validators.required],
-  //     id: ['', Validators.required],
-  //     availability: ['', Validators.required],
-  //     price: ['', Validators.required]
-  //   });
-  // }
+  createForm() {
+    this.rugForm = this.builder.group({
+      name: ['', Validators.required],
+      id: ['', Validators.required],
+      availability: ['', Validators.required],
+      price: ['', Validators.required]
+    });
+  }
 
-  // editRug(name, id, availability, price) {
-  //   this.builder.editRug(name, id, availability, price);
-  // }
+  editRug(name: string, id: number, availability: string, price: number) {
+    this.service.editRug(name, id, availability, price);
+  }
 
   ngOnInit() {
     this.rugForm = new FormGroup({
@@ -41,8 +42,7 @@ export class RugEditComponent implements OnInit {
   // saveRug(): void {
   //   if (this.rugForm.valid) {
   //     if (this.rugForm.dirty) {
-  //       const p = { ...this.rug, ...this.rugForm.value };
-
+  //       const p = { ...this.rug, ...this.rugForm.value }; 
   //       if (p.id === 0) {
   //         this.rugService.createRug(p)
   //           .subscribe(

@@ -24,7 +24,8 @@ import { RugService } from './rugs/rug.service';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule],
+    HttpClientModule
+  ],
   providers: [RugService],
   bootstrap: [AppComponent]
 })
