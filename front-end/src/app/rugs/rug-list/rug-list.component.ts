@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IRug } from '../rug';
+import { Rug } from '../rug';
 import { RugService } from '../rug.service';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RugListComponent implements OnInit {
     title = 'Rug List';
-    rugs: IRug[];
+    rugs: Rug[];
 
     constructor(private rugService: RugService, 
         private router: Router) { }

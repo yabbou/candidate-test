@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IRug } from '../rug';
+import { Rug } from '../rug';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RugDetailComponent implements OnInit {
   title = "Rug Details";
-  rug: IRug;
+  rug: Rug;
 
   constructor(private route: ActivatedRoute, 
     private router: Router) {
@@ -19,9 +19,9 @@ export class RugDetailComponent implements OnInit {
     let id = +this.route.snapshot.paramMap.get('id');
     this.title += `:${id}`;
     this.rug = {
-      "rugName": "African Rug",
+      "name": "African Rug",
       "id": 2,
-      "available": "In-stock",
+      "availability": "In-stock",
       "price": 400
     };
   }

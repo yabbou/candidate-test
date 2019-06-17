@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Rug } from '../rug';
 
 @Component({
   selector: 'rug-edit',
@@ -7,9 +9,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RugEditComponent implements OnInit {
   title = 'Add Rug';
-  constructor() { }
+  rugForm: FormGroup;
+  rug = new Rug();
+
+  constructor(private builder: FormBuilder) {
+    // this.createForm();
+  }
+
+  // createForm() {
+  //   this.rugForm = this.builder.group({
+  //     name: ['', Validators.required],
+  //     id: ['', Validators.required],
+  //     availability: ['', Validators.required],
+  //     price: ['', Validators.required]
+  //   });
+  // }
+
+  // editRug(name, id, availability, price) {
+  //   this.builder.editRug(name, id, availability, price);
+  // }
 
   ngOnInit() {
+    this.rugForm = new FormGroup({
+      name: new FormControl(),
+      id: new FormControl(),
+      availability: new FormControl(),
+      price: new FormControl()
+    });
   }
+
+  // saveRug(): void {
+  //   if (this.rugForm.valid) {
+  //     if (this.rugForm.dirty) {
+  //       const p = { ...this.rug, ...this.rugForm.value };
+
+  //       if (p.id === 0) {
+  //         this.rugService.createRug(p)
+  //           .subscribe(
+  //             () => this.onSaveComplete(),
+  //             (error: any) => this.errorMessage = <any>error
+  //           );
+  //       } else {
+  //         this.rugService.updateRug(p)
+  //           .subscribe(
+  //             () => this.onSaveComplete(),
+  //             (error: any) => this.errorMessage = <any>error
+  //           );
+  //       }
+  //     } else {
+  //       this.onSaveComplete();
+  //     }
+  //   } else {
+  //     this.errorMessage = 'Please correct the validation errors.';
+  //   }
+  // }
 
 }

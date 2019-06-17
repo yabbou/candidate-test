@@ -1,32 +1,35 @@
 <div class="card">
-  <div class="card-header">{{title}}</div>
+  <div class="card-header">Add Rug</div>
 
   <div class="card-body">
 
-    <form>
+    <form novalidate [formGroup]="rugForm">
+
       <div class="form-group row mb-2">
         <label class=" col-md-2 col-form-label">Rug Name</label>
-        <div><input class="form-control" type=" text" placeholder="Name (Required)" [(ngModel)]="rug.rugName"
-          #nameVar="ngModel" formContorlName="rugName" /></div>
+        <div><input class="form-control" type=" text" placeholder="Name (Required)" formContorlName="Name" /></div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">ID</label>
-        <div><input class="form-control" type=" text" placeholder="ID (Required)" /></div>
+        <div><input class="form-control" type=" text" placeholder="ID (Required)" formContorlId="Id" /></div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">Availability</label>
-        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock" /></div>
+        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock"
+            formContorlAvailability="Availability" /></div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">Price</label>
-        <div><input class="form-control" type=" text" placeholder="Price (Required)" /></div>
+        <div><input class="form-control" type=" text" placeholder="Price (Required)" formContorlPrice="Price" /></div>
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary"
+          (click)="addRug(name.value, ID.value, Availability.value, Price.value)"
+          [disabled]="rugForm.pristine||!rugForm.valid">Add</button>
       </div>
     </form>
 

@@ -1,6 +1,6 @@
-export interface IRug{
-    rugName: string;
+export class Rug{
+    name: string;
     id: number;
-    available: string;
+    availability: string;
     price: number;
 }
