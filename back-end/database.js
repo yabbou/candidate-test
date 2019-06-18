@@ -1,1 +1,3 @@
-export const database = 'mongodb://localhost:27017/rug-company';
+module.exports = {
+    database: 'mongodb://localhost:27017/rug-company'
+ };

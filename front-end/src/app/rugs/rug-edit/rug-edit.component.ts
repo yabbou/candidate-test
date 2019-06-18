@@ -38,30 +38,4 @@ export class RugEditComponent implements OnInit {
       price: new FormControl()
     });
   }
-
-  // saveRug(): void {
-  //   if (this.rugForm.valid) {
-  //     if (this.rugForm.dirty) {
-  //       const p = { ...this.rug, ...this.rugForm.value }; 
-  //       if (p.id === 0) {
-  //         this.rugService.createRug(p)
-  //           .subscribe(
-  //             () => this.onSaveComplete(),
-  //             (error: any) => this.errorMessage = <any>error
-  //           );
-  //       } else {
-  //         this.rugService.updateRug(p)
-  //           .subscribe(
-  //             () => this.onSaveComplete(),
-  //             (error: any) => this.errorMessage = <any>error
-  //           );
-  //       }
-  //     } else {
-  //       this.onSaveComplete();
-  //     }
-  //   } else {
-  //     this.errorMessage = 'Please correct the validation errors.';
-  //   }
-  // }
-
 }

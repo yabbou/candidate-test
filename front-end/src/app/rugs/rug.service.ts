@@ -2,13 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Rug } from './rug';
 
-// import { Observable, of, throwError } from 'rxjs';
-// import { catchError, tap, map } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable({ providedIn: "root" })
 export class RugService {
     private uri = 'http://localhost:4000/rug';
-    // RugsUrl: any;
+    RugsUrl: any;
 
     constructor(private http: HttpClient) { }
 
@@ -27,6 +27,10 @@ export class RugService {
         }];
     }
 
+    getRugs2() {
+        return this.http.get(`${this.uri}`);
+    }
+
     // getRugs_(): Observable<Rug[]> {
 
     //     return this.http.get<Rug[]>(this.RugsUrl)
@@ -36,30 +40,16 @@ export class RugService {
     //         );
     // }
 
-    // getRug(id: number): Observable<Rug> {
-    //     if (id === 0) {
-    //         return of(this.initializeRug());
-    //     }
+    getRug(id: number): Observable<Rug> {
+        const url = `${this.RugsUrl}/${id}`;
 
-    //     const url = `${this.RugsUrl}/${id}`;
-    //     return this.http.get<Rug>(url)
-    //         .pipe(
-    //             tap(data => console.log('getRug: ' + JSON.stringify(data))),
-    //             catchError(this.handleError)
+        if (id === 0) { return of(this.initializeRug()); }
 
-    //         );
-    // }
-
-    // editRug2(rug: Rug): Observable<Rug> {
-    //     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //     rug.id = null;
-
-    //     return this.http.post<Rug>(this.RugsUrl, rug, { headers: headers })
-    //         .pipe(
-    //             tap(data => console.log('editRug: ' + JSON.stringify(data))),
-    //             catchError(this.handleError)
-    //         );
-    // }
+        return this.http.get<Rug>(url).pipe(
+            tap(data => console.log('getRug: ' + JSON.stringify(data))),
+            catchError(this.handleError)
+        );
+    }
 
     editRug(name, id, availability, price) {
         const rug = {
@@ -73,42 +63,53 @@ export class RugService {
             .subscribe(() => console.log('Done'));
     }
 
-    // deleteRug(id: number): Observable<{}> {
+    // editRug2(rug: Rug): Observable<Rug> {
     //     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //     const url = `${this.RugsUrl}/${id}`;
+    //     rug.id = null;
 
-    //     return this.http.delete<Rug>(url, { headers: headers })
+    //     return this.http.post<Rug>(this.RugsUrl, rug, { headers: headers })
     //         .pipe(
-    //             tap(data => console.log('deleteRug: ' + id)),
+    //             tap(data => console.log('editRug: ' + JSON.stringify(data))),
     //             catchError(this.handleError)
     //         );
     // }
 
-    // updateRug(Rug: Rug): Observable<Rug> {
-    //     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    //     const url = `${this.RugsUrl}/${Rug.id}`;
+    deleteRug(id: number): Observable<{}> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const url = `${this.RugsUrl}/${id}`;
 
-    //     return this.http.put<Rug>(url, Rug, { headers: headers })
-    //         .pipe(
-    //             tap(() => console.log('updateRug: ' + Rug.id)),
-    //             map(() => Rug),
-    //             catchError(this.handleError)
+        return this.http.delete<Rug>(url, { headers: headers })
+            .pipe(
+                tap(data => console.log('deleteRug: ' + id)),
+                catchError(this.handleError)
+            );
+    }
 
-    //         );
-    // }
+    updateRug(Rug: Rug): Observable<Rug> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const url = `${this.RugsUrl}/${Rug.id}`;
 
-    // private handleError(err) {
-    //     let errorMessage: string;
+        return this.http.put<Rug>(url, Rug, { headers: headers })
+            .pipe(
+                tap(() => console.log('updateRug: ' + Rug.id)),
+                map(() => Rug),
+                catchError(this.handleError)
 
-    //     if (err.error instanceof ErrorEvent) {
-    //         errorMessage = `An error occurred: ${err.error.message}`;
-    //     } else {
-    //         errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
-    //     }
+            );
+    }
 
-    //     console.error(err);
-    //     return throwError(errorMessage);
-    // }
+    private handleError(err) {
+        let errorMessage: string;
+
+        if (err.error instanceof ErrorEvent) {
+            errorMessage = `An error occurred: ${err.error.message}`;
+        } else {
+            errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
+        }
+
+        console.error(err);
+        return throwError(errorMessage);
+    }
 
     private initializeRug(): Rug {
         return {

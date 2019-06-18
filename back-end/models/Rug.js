@@ -1,5 +1,5 @@
-import { Schema as _Schema, model } from 'mongoose';
-const Schema = _Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 let Rug = new Schema({
     name: { type: String },
@@ -8,4 +8,4 @@ let Rug = new Schema({
     price: { type: Number }
 }, { collection: 'rug' });
 
-export default model('Rug', Rug);
+module.exports = mongoose.model('Rug', Rug);

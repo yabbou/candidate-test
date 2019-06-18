@@ -11,10 +11,13 @@ export class RugListComponent implements OnInit {
     title = 'Rug List';
     rugs: Rug[];
 
-    constructor(private rugService: RugService, 
+    constructor(private rugService: RugService,
         private router: Router) { }
 
     ngOnInit(): void {
-        this.rugs = this.rugService.getRugs();
+        this.rugService.getRugs2().subscribe(
+            (data: Rug[]) => { this.rugs = data; }
+        );
+        // this.rugs = this.rugService.getRugs();
     }
 }

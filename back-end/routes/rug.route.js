@@ -1,8 +1,14 @@
-import { express, Router } from 'express';
-import { Rug, find, findById, findByIdAndRemove } from '../models/Rug';
-
+const express = require('express');
 const app = express();
-const rugRoutes = Router();
+const rugRoutes = express.Router();
+let rug = require('../models/Rug');
+
+rugRoutes.route('/').get(function (req, res) {
+    find(function (err, rugs) {
+        if (err) { console.log(err); }
+        else { res.json(rugs); }
+    });
+});
 
 rugRoutes.route('/add').post(function (req, res) {
     let rug = new Rug(req.body);
@@ -15,33 +21,10 @@ rugRoutes.route('/add').post(function (req, res) {
         });
 });
 
-rugRoutes.route('/').get(function (req, res) {
-    find(function (err, ruges) {
-        if (err) { console.log(err); }
-        else { res.json(ruges); }
-    });
-});
-
 rugRoutes.route('/edit/:id').get(function (req, res) {
     let id = req.params.id;
     findById(id, function (err, rug) {
         res.json(rug);
-    });
-});
-
-rugRoutes.route('/update/:id').post(function (req, res) {
-    findById(req.params.id, function (err, next, rug) {
-        if (!rug)
-            return next(new Error('Could not load Document'));
-        else {
-            rug.person_name = req.body.person_name;
-            rug.rug_name = req.body.rug_name;
-            rug.rug_gst_number = req.body.rug_gst_number;
-
-            rug.save().then(
-                rug => { res.json('Update complete'); })
-                .catch(err => { res.status(400).send("Unable to update the database"); });
-        }
     });
 });
 
@@ -52,4 +35,4 @@ rugRoutes.route('/delete/:id').get(function (req, res) {
     });
 });
 
-export default rugRoutes;
+module.exports = rugRoutes;
