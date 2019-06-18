@@ -3,33 +3,33 @@
 
   <div class="card-body">
 
-    <form novalidate [formGroup]="rugForm">
+    <form [formGroup]="rugForm" novalidate>
 
       <div class="form-group row mb-2">
         <label class=" col-md-2 col-form-label">Rug Name</label>
-        <div><input class="form-control" type=" text" placeholder="Name (Required)" formContorlName="Name" /></div>
+        <div><input class="form-control" type=" text" placeholder="Name (Required)" formContorlName="n" /></div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">ID</label>
-        <div><input class="form-control" type=" text" placeholder="ID (Required)" formContorlId="Id" /></div>
+        <div><input class="form-control" type=" text" placeholder="ID (Required)" formContorlId="i" /></div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">Availability</label>
-        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock"
-            formContorlAvailability="Availability" /></div>
+        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock" formContorlAvailability="a" />
+        </div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">Price</label>
-        <div><input class="form-control" type=" text" placeholder="Price (Required)" formContorlPrice="Price" /></div>
+        <div><input class="form-control" type=" text" placeholder="Price (Required)" formContorlPrice="p" /></div>
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary"
-          (click)="addRug(name.value, id.value, availability.value, price.value)">Add</button>
+        <button type="submit" class="btn btn-primary" (click)="editRug(n.value, i.value, a.value, p.value)">Add</button>
       </div>
+
     </form>
 
   </div>

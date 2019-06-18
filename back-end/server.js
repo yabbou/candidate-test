@@ -6,7 +6,6 @@ const express = require('express'),
     config = require('./database');
 
 const rugRoute = require('./routes/rug.route');
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database, { useNewUrlParser: true }).then(
     () => { console.log('Database is connected') },
@@ -17,7 +16,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/rug', rugRoute);
+app.use('/rugs', rugRoute);
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function () {

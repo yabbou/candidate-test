@@ -20,7 +20,7 @@
                     <td>{{rug.availability}}</td>
                     <td>{{rug.price|currency:"USD":"symbol"}}</td>
                     <td>
-                        <a [routerLink]="" class="btn btn-outline-danger">Remove</a>
+                        <a [routerLink]="deleteRug(rug.id)" class="btn btn-outline-danger">Delete</a>
                     </td>
                 </tr>
             </tbody>

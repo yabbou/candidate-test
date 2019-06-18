@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Rug } from '../rug';
 import { RugService } from '../rug.service';
-import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './rug-list.component.html',
@@ -11,13 +10,20 @@ export class RugListComponent implements OnInit {
     title = 'Rug List';
     rugs: Rug[];
 
-    constructor(private rugService: RugService,
-        private router: Router) { }
+    constructor(private rugService: RugService) { }
 
     ngOnInit(): void {
-        this.rugService.getRugs2().subscribe(
+        this.rugService.getRugs().subscribe(
             (data: Rug[]) => { this.rugs = data; }
         );
-        // this.rugs = this.rugService.getRugs();
+    }
+    
+    getRugs() {
+        this.rugService.getRugs().
+            subscribe(() => { console.log('Listed'); });
+    }
+    deleteRug(id: number) {
+        this.rugService.deleteRug(id).
+            subscribe(() => { console.log('Deleted'); });
     }
 }
