@@ -9,7 +9,7 @@ export class RugService {
     constructor(private http: HttpClient) { }
 
     getRugs() {
-        return this.http.get(this.uri);
+        return this.http.get(`${this.uri}`);
     }
 
     getRug(id: number) {
@@ -26,9 +26,13 @@ export class RugService {
         };
         console.log(rug);
 
-        this.http
-            .post(`${this.uri}/0/edit`, rug)
-            .subscribe(() => console.log('Done'));
+        this.http.post(`${this.uri}/add`, rug).subscribe(
+            () => console.log('Done')
+        );
+
+        // this.http
+        //     .post(`${this.uri}/0/edit`, rug)
+        //     .subscribe(() => console.log('Done'));
     }
 
     deleteRug(id: number) {

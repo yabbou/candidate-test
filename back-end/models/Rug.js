@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Rug = new Schema({
-    name: { type: String },
-    id: { type: Number },
-    availability: { type: String },
-    price: { type: Number }
-}, { collection: 'rug' });
+    name: String,
+    id: Number,
+    availability: String,
+    price: Number
+}, { collection: 'rugs' });
 
 module.exports = mongoose.model('Rug', Rug);

@@ -13,12 +13,12 @@ mongoose.connect(config.database, { useNewUrlParser: true }).then(
 );
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(cors());
-
 app.use('/rugs', rugRoute);
-const port = process.env.PORT || 4000;
 
+const port = process.env.PORT || 4000;
 const server = app.listen(port, function () {
     console.log('Listening on port ' + port);
 });

@@ -17,13 +17,9 @@ export class RugListComponent implements OnInit {
             (data: Rug[]) => { this.rugs = data; }
         );
     }
-    
-    getRugs() {
-        this.rugService.getRugs().
-            subscribe(() => { console.log('Listed'); });
-    }
+
     deleteRug(id: number) {
-        this.rugService.deleteRug(id).
-            subscribe(() => { console.log('Deleted'); });
+        this.rugService.deleteRug(id).subscribe(
+            () => { console.log('Deleted'); });
     }
 }

@@ -7,27 +7,28 @@
 
       <div class="form-group row mb-2">
         <label class=" col-md-2 col-form-label">Rug Name</label>
-        <div><input class="form-control" type=" text" placeholder="Name (Required)" formContorlName="n" /></div>
+        <div><input class="form-control" type=" text" placeholder="Name (Required)" formContorlName="n" #n_ /></div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">ID</label>
-        <div><input class="form-control" type=" text" placeholder="ID (Required)" formContorlId="i" /></div>
+        <div><input class="form-control" type=" text" placeholder="ID (Required)" formContorlId="i" #i_ /></div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">Availability</label>
-        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock" formContorlAvailability="a" />
+        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock" formContorlAvailability="a" #a_ />
         </div>
       </div>
 
       <div class="form-group row mb-2">
         <label class="col-md-2">Price</label>
-        <div><input class="form-control" type=" text" placeholder="Price (Required)" formContorlPrice="p" /></div>
+        <div><input class="form-control" type=" text" placeholder="Price (Required)" formContorlPrice="p" #p_ /></div>
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary" (click)="editRug(n.value, i.value, a.value, p.value)">Add</button>
+        <button type="submit" class="btn btn-primary"
+          (click)="editRug(n_.value, i_.value, a_.value, p_.value)">Add</button>
       </div>
 
     </form>
