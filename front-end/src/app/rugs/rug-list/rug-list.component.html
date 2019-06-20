@@ -15,12 +15,12 @@
 
             <tbody>
                 <tr *ngFor='let rug of rugs'>
-                    <td><a [routerLink]="['/rug-list', 'rug.id']">{{rug.name}}</a></td>
+                    <td><a [routerLink] ="['/rug-list', rug.id]">{{rug.name}}</a></td>
                     <td>{{rug.id}}</td>
                     <td>{{rug.availability}}</td>
                     <td>{{rug.price|currency:"USD":"symbol"}}</td>
                     <td>
-                        <a (click)="deleteRug(rug.id)" class="btn btn-outline-danger">Delete</a>
+                        <a class="btn btn-outline-danger" (click)="deleteRug(rug.id)" >Delete</a>
                     </td>
                 </tr>
             </tbody>

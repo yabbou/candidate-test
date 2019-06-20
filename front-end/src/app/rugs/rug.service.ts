@@ -13,7 +13,6 @@ export class RugService {
     }
 
     getRug(id: number) {
-        if (id === 0) { return this.initializeRug(); }
         return this.http.get(`${this.uri}/${id}`);
     }
 
@@ -26,25 +25,12 @@ export class RugService {
         };
         console.log(rug);
 
-        this.http.post(`${this.uri}/add`, rug).subscribe(
+        this.http.post<Rug>(`${this.uri}/add`, rug).subscribe(
             () => console.log('Done')
         );
-
-        // this.http
-        //     .post(`${this.uri}/0/edit`, rug)
-        //     .subscribe(() => console.log('Done'));
     }
 
     deleteRug(id: number) {
-        return this.http.get(`${this.uri}/${id}/delete`);
-    }
-
-    private initializeRug(): Rug {
-        return {
-            name: null,
-            id: 0,
-            availability: null,
-            price: null
-        };
+        return this.http.delete<Rug>(`${this.uri}/${id}/delete`);
     }
 }

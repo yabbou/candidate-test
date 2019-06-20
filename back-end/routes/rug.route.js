@@ -5,7 +5,7 @@ const rugRoutes = express.Router();
 let Rug = require('../models/Rug');
 
 //list
-rugRoutes.route('/').get(function (req,res) {
+rugRoutes.route('/').get(function (req, res) {
     Rug.find(function (err, rugs) {
         if (err) { console.log(err); }
         else { res.json(rugs); }
@@ -16,7 +16,8 @@ rugRoutes.route('/').get(function (req,res) {
 rugRoutes.route('/:id').get(function (req, res) {
     let id = req.params.id;
     Rug.findById(id, function (err, rug) {
-        res.json(rug);
+        if (err) { return res.json(err); }
+        else { res.json(rug); }
     });
 });
 
@@ -24,15 +25,15 @@ rugRoutes.route('/:id').get(function (req, res) {
 rugRoutes.route('/add').post(function (req, res) {
     let rug = new Rug(req.body);
     rug.save().then(
-        () => { res.status(200).json({ 'rug': 'Rug added successfully' }); })
-        .catch(() => { res.status(400).send("Unable to add to database"); });
+        req => { res.status(200).json({ 'rug': 'Rug added successfully' }); })
+        .catch(() => { res.status(400).json("Unable to add to database"); });
 });
 
 //delete
 rugRoutes.route('/:id/delete').get(function (req, res) {
-    Rug.findByIdAndRemove({ _id: req.params.id }, function (err) {
-        if (err) res.json(err);
-        else res.json('Successfully removed');
+    Rug.findByIdAndDelete(req.params.id, function (err) {
+        if (err) return next(err);
+        else res.json('Successfully deleted');
     });
 });
 

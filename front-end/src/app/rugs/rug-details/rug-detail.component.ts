@@ -17,27 +17,14 @@ export class RugDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const param = +this.route.snapshot.paramMap.get('id');
-    // this.title += `: ${id}`;
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.title += `: ${id}`;
 
-    if (param) {
-      const id = +param;
-      this.getRug(id);
+    if (id) {
+      this.rugService.getRug(id).subscribe(
+        (data: Rug) => { this.rug = data; }
+      );
     }
-
-    // this.rug = {
-    //   "name": "African Rug",
-    //   "id": 2,
-    //   "availability": "In-stock",
-    //   "price": 400
-    // };
-  }
-
-  getRug(id: number) {
-    this.rugService.getRug(id);
-    // .subscribe(
-    //   (data: Rug) => { this.rug = data; }
-    //   );
   }
 
   onBack(): void {
