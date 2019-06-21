@@ -15,7 +15,7 @@ rugRoutes.route('/').get(function (req, res) {
 //get (details)
 rugRoutes.route('/:id').get(function (req, res) {
     let id = req.params.id;
-    Rug.findById(id, function (err, rug) {
+    Rug.findOne({ "id": id }, function (err, rug) {
         if (err) { return res.json(err); }
         else { res.json(rug); }
     });
@@ -30,8 +30,9 @@ rugRoutes.route('/add').post(function (req, res) {
 });
 
 //delete
-rugRoutes.route('/:id/delete').get(function (req, res) {
-    Rug.findByIdAndDelete(req.params.id, function (err) {
+rugRoutes.route('/:id/delete', { useFindAndModify: false }).get(function (req, res) {
+    let id = req.params.id;
+    Rug.findOneAndDelete({ "id": id }, function (err) {
         if (err) { return res.json(err); }
         else { res.json('Successfully deleted'); }
     });
