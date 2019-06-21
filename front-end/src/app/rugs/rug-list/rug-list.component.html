@@ -10,17 +10,21 @@
                     <th>Availability</th>
                     <th>Price</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor='let rug of rugs'>
-                    <td><a [routerLink] ="['/rug-list', rug.id]">{{rug.name}}</a></td>
+                    <td><a [routerLink]="['/rug-list', rug.id]">{{rug.name}}</a></td>
                     <td>{{rug.id}}</td>
                     <td>{{rug.availability}}</td>
                     <td>{{rug.price|currency:"USD":"symbol"}}</td>
                     <td>
-                        <a class="btn btn-outline-danger" (click)="deleteRug(rug)" >Delete</a>
+                        <a [routerLink]="['/rug-list', rug.id, 'edit']" class="btn btn-outline-primary">Edit</a>
+                    </td> 
+                    <td>
+                        <a class="btn btn-outline-danger" (click)="deleteRug(rug)">Delete</a>
                     </td>
                 </tr>
             </tbody>
