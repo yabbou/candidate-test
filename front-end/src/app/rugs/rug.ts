@@ -1,6 +1,6 @@
-export class Rug{
-    name: String;
-    id: Number;
+export interface Rug{
+    name: string;
+    id: number;
     availability: String;
-    price: Number;
+    price: number;
 }

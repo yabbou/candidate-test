@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Rug } from './rug';
+import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: "root" })
 export class RugService {
@@ -8,15 +9,25 @@ export class RugService {
 
     constructor(private http: HttpClient) { }
 
-    getRugs() {
-        return this.http.get(`${this.uri}`);
+    getRugs(): Observable<Rug[]> {
+        return this.http.get<Rug[]>(`${this.uri}`);
     }
 
-    getRug(id: number) {
-        return this.http.get(`${this.uri}/${id}`);
+    getRug(id: number): Observable<Rug> {
+        if (id === 0) { return of(this.initializeProduct()); }
+        return this.http.get<Rug>(`${this.uri}/${id}`);
     }
 
-    editRug(name, id, availability, price) {
+    private initializeProduct(): Rug {
+        return {
+            name: null,
+            id: 0,
+            availability: null,
+            price: 0
+        };
+    }
+
+    editRug(name, id, availability, price): void {
         const rug = {
             name: name,
             id: id,
@@ -30,7 +41,7 @@ export class RugService {
         );
     }
 
-    deleteRug(id: number) {
+    deleteRug(id: number): Observable<{}> {
         return this.http.delete<Rug>(`${this.uri}/${id}/delete`);
     }
 }

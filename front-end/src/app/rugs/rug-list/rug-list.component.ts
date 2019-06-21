@@ -9,19 +9,21 @@ import { RugService } from '../rug.service';
 export class RugListComponent implements OnInit {
     title = 'Rug List';
     rugs: Rug[];
-    rug:Rug;
+    rug: Rug;
 
     constructor(private rugService: RugService) { }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
         this.rugService.getRugs().subscribe(
-            (data: Rug[]) => { this.rugs = data; }
+            (rugs: Rug[]) => { this.rugs = rugs; }
         );
     }
 
-    deleteRug(id: number) : void { 
-        this.rugService.deleteRug(id).subscribe(
-            () => { console.log('Deleted'); }
-        );
+    deleteRug(rug: Rug): void {
+        if (confirm(`Are you sure you want to delete rug: ${rug.name}?`)) {
+            this.rugService.deleteRug(rug.id).subscribe(
+                res => { console.log('Deleted'); }
+            );
+        }
     }
 }

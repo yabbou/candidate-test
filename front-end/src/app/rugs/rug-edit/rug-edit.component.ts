@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { RugService } from '../rug.service';
-import { Rug } from '../rug';
 
 @Component({
   selector: 'rug-edit',
@@ -13,7 +12,6 @@ import { Rug } from '../rug';
 export class RugEditComponent implements OnInit {
   title = 'Add Rug';
   rugForm: FormGroup;
-  rug = new Rug();
 
   constructor(private builder: FormBuilder, private rugService: RugService, private router: Router) {
     this.createForm();
@@ -43,6 +41,10 @@ export class RugEditComponent implements OnInit {
   }
 
   onAdd(): void {
+    this.router.navigate(['/rug-list']);
+  }
+
+  onCancel(): void{
     this.router.navigate(['/rug-list']);
   }
 }

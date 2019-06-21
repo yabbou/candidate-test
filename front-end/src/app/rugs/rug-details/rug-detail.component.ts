@@ -17,14 +17,18 @@ export class RugDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.title += `: ${id}`;
 
     if (id) {
-      this.rugService.getRug(id).subscribe(
-        (data: Rug) => { this.rug = data; }
-      );
+      this.getRug(+id);
     }
+  }
+
+  getRug(id: number): void {
+    this.rugService.getRug(id).subscribe(
+      rug => { this.rug = rug }
+    );
   }
 
   onBack(): void {

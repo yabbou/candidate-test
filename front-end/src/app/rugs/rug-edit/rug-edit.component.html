@@ -27,11 +27,20 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary"
-          (click)="editRug(n_.value, i_.value, a_.value, p_.value)">Add</button>
+        <button type="submit" class="btn btn-primary" (click)="editRug(n_.value, i_.value, a_.value, p_.value)">
+          Add
+        </button>
       </div>
 
     </form>
-
   </div>
+
+  <div class="card-footer">
+      <div class="col-md-4">
+        <button class="btn btn-outline-secondary mr-3" style="width:80px" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+    
 </div>
