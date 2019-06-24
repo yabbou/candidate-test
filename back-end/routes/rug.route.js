@@ -26,11 +26,28 @@ rugRoutes.route('/add').post(function (req, res) {
     let rug = new Rug(req.body);
     rug.save().then(
         req => { res.status(200).json({ 'rug': 'Rug added successfully' }); })
-        .catch(() => { res.status(400).json("Unable to add to database"); });
+        .catch(() => { res.status(400).json("Unable to add"); });
+});
+
+//update
+rugRoutes.route('/:id/update').post(function (req, res) {
+    Rug.findOne({ "id": id }, function (err, rug) {
+        if (err) { return res.json(err); }
+        else {
+            rug.name = req.body.name;
+            rug.id = req.body.id;
+            rug.availability = req.body.availability;
+            rug.price = req.body.price;
+            
+            rug.save().then(
+                req => { res.status(200).json({ 'rug': 'Rug updated successfully' }); })
+                .catch(() => { res.status(400).json("Unable to update"); });
+        }
+    })
 });
 
 //delete
-rugRoutes.route('/:id/delete', { useFindAndModify: false }).get(function (req, res) {
+rugRoutes.route('/:id/delete').get(function (req, res) {
     let id = req.params.id;
     Rug.findOneAndDelete({ "id": id }, function (err) {
         if (err) { return res.json(err); }

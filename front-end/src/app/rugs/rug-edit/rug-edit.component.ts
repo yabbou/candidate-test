@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RugService } from '../rug.service';
 import { Rug } from '../rug';
 import { Subscription } from 'rxjs';
-import { RugListComponent } from '../rug-list/rug-list.component';
 
 @Component({
   selector: 'rug-edit',
@@ -13,10 +12,11 @@ import { RugListComponent } from '../rug-list/rug-list.component';
   styleUrls: ['./rug-edit.component.css']
 })
 export class RugEditComponent implements OnInit {
-  title = 'Add Rug';
+  title: string;
   rugForm: FormGroup;
   rug: Rug;
 
+  sub: Subscription;
   validationMessages: {
     name: { required: string; minlength: string; maxlength: string; };
     id: { required: string; };
@@ -24,13 +24,10 @@ export class RugEditComponent implements OnInit {
     price: { required: string; };
   };
   genericValidator: Validators;
-  sub: Subscription;
 
   constructor(private builder: FormBuilder, private rugService: RugService,
     private router: Router, private route: ActivatedRoute) {
-
     this.createForm();
-
     this.validationMessages = {
       name: {
         required: 'Rug name is required.',
@@ -54,67 +51,76 @@ export class RugEditComponent implements OnInit {
 
   createForm() {
     this.rugForm = this.builder.group({
-      name: ['', [Validators.required,
+      form_n: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      id: ['', Validators.required],
-      availability: ['', [Validators.required,
+      form_i: ['', Validators.required],
+      form_a: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      price: ''
+      form_p: ''
     });
-  }
-
-  editRug(name: string, id: number, availability: string, price: number) {
-    this.rugService.editRug(name, id, availability, price);
-    this.onAdd();
   }
 
   ngOnInit() {
     this.createForm;
-
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = +params.get('id');
         this.getRug(id);
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
-
-  displayRug(rug: Rug): void {
-    if (this.rugForm) {
-      this.rugForm.reset();
-    }
-    this.rug = rug;
-
-    if (this.rug.id !== 0) {
-      this.title = `Edit Rug: ${this.rug.name}`;
-    }
-
-    this.rugForm.patchValue({
-      name: this.rug.name,
-      id: this.rug.id,
-      availability: this.rug.availability,
-      price: this.rug.price
-    });
+      });
   }
 
   getRug(id: number): void {
-    this.rugService.getRug(id).subscribe(
-      rug => { this.rug = rug }
-    );
+    this.rugService.getRug(id)
+      .subscribe(
+        (rug: Rug) => { this.getForm(rug) }
+      );
   }
 
-  onAdd(): void {
-    this.router.navigate(['/rug-list']);
+  getForm(rug: Rug): void {
+    this.rug = rug;
+
+    if (this.rug.id === 0) {
+      this.title = 'Add Rug';
+    } else {
+      this.title = `Edit Rug: ${this.rug.id}: ${this.rug.name}`;
+
+      this.rugForm.setValue({
+        form_n: this.rug.name,
+        form_i: this.rug.id,
+        form_a: this.rug.availability,
+        form_p: this.rug.price
+      });
+    }
   }
 
-  onCancel(): void {
+  saveRug(name: string, id: number, availability: string, price: number): void {
+    const r = {
+      name: name,
+      id: id,
+      availability: availability,
+      price: price
+    };
+
+    if (id === 0) {
+      this.rugService.addRug(r).subscribe(
+        () => console.log('Added')
+      );
+    } else {
+      this.rugService.updateRug(r).subscribe(
+        () => console.log('Updated')
+      );
+    }
+    this.onDone();
+  }
+
+  onDone(): void {
     this.rugForm.reset();
     this.router.navigate(['/rug-list']);
+  }
+
+  onDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -27,18 +27,14 @@ export class RugService {
         };
     }
 
-    editRug(name, id, availability, price): void {
-        const rug = {
-            name: name,
-            id: id,
-            availability: availability,
-            price: price
-        };
+    addRug(rug: Rug): Observable<Rug> {
         console.log(rug);
+        return this.http.post<Rug>(`${this.uri}/add`, rug);
+    }
 
-        this.http.post<Rug>(`${this.uri}/add`, rug).subscribe(
-            () => console.log('Done')
-        );
+    updateRug(rug: Rug): Observable<Rug> {
+        console.log(rug);
+        return this.http.put<Rug>(`${this.uri}/${rug.id}/update`, rug);
     }
 
     deleteRug(id: number): Observable<{}> {
