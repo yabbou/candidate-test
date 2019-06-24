@@ -31,17 +31,18 @@ rugRoutes.route('/add').post(function (req, res) {
 
 //update
 rugRoutes.route('/:id/update').post(function (req, res) {
-    Rug.findOne({ "id": id }, function (err, rug) {
+    let id = req.params.id;
+    Rug.findOneAndUpdate({ "id": id }, function (err, rug) {
         if (err) { return res.json(err); }
         else {
             rug.name = req.body.name;
             rug.id = req.body.id;
             rug.availability = req.body.availability;
             rug.price = req.body.price;
-            
-            rug.save().then(
-                req => { res.status(200).json({ 'rug': 'Rug updated successfully' }); })
-                .catch(() => { res.status(400).json("Unable to update"); });
+
+            // rug.save().then(
+            //     req => { res.status(200).json({ 'rug': 'Rug updated successfully' }); })
+            //     .catch(() => { res.status(400).json("Unable to update"); });
         }
     })
 });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { RugService } from '../rug.service';
@@ -24,12 +24,12 @@ export class RugEditComponent implements OnInit {
     this.createForm();
   }
 
-  createForm() {
+  private createForm() {
     this.rugForm = this.builder.group({
       formName: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      formId: ['', Validators.required],
+      formId: [''],
       formAv: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
@@ -53,7 +53,7 @@ export class RugEditComponent implements OnInit {
       );
   }
 
-  getForm(rug: Rug): void {
+  private getForm(rug: Rug): void {
     this.rug = rug;
 
     if (this.rug.id === 0) {

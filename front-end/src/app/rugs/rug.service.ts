@@ -3,9 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Rug } from './rug';
 import { Observable, of } from 'rxjs';
 
+// import { RugModel } from '/Users/yaakov/Dropbox/Public/Code/WebStromProjects/rug-company/back-end/models/Rug';
+
 @Injectable({ providedIn: "root" })
 export class RugService {
     private uri = 'http://localhost:4000/rugs';
+    // model = new RugModel();
 
     constructor(private http: HttpClient) { }
 
@@ -22,6 +25,7 @@ export class RugService {
         return {
             name: null,
             id: 0,
+            // id: this.model.find({ lastElement: { $slice: -1 } }).id + 1,
             availability: null,
             price: 0
         };
@@ -38,6 +42,6 @@ export class RugService {
     }
 
     deleteRug(id: number): Observable<{}> {
-        return this.http.delete<Rug>(`${this.uri}/${id}/delete`);
+        return this.http.get<Rug>(`${this.uri}/${id}/delete`);
     }
 }
