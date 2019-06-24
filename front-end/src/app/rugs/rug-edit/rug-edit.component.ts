@@ -17,48 +17,23 @@ export class RugEditComponent implements OnInit {
   rug: Rug;
 
   sub: Subscription;
-  validationMessages: {
-    name: { required: string; minlength: string; maxlength: string; };
-    id: { required: string; };
-    availability: { required: string; minlength: string; maxlength: string; };
-    price: { required: string; };
-  };
-  genericValidator: Validators;
+  validator: Validators;
 
   constructor(private builder: FormBuilder, private rugService: RugService,
     private router: Router, private route: ActivatedRoute) {
     this.createForm();
-    this.validationMessages = {
-      name: {
-        required: 'Rug name is required.',
-        minlength: 'Rug name must be at least three characters.',
-        maxlength: 'Rug name cannot exceed 25 characters.'
-      },
-      id: {
-        required: 'Rug id is required.'
-      },
-      availability: {
-        required: 'Rug availability is required.',
-        minlength: 'Rug availability must be at least three characters.',
-        maxlength: 'Rug availability cannot exceed 25 characters.'
-      },
-      price: {
-        required: 'Rug id is required.'
-      }
-    };
-    // this.genericValidator = new Validators(this.validationMessages);
   }
 
   createForm() {
     this.rugForm = this.builder.group({
-      form_n: ['', [Validators.required,
+      formName: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      form_i: ['', Validators.required],
-      form_a: ['', [Validators.required,
+      formId: ['', Validators.required],
+      formAv: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      form_p: ''
+      formPrice: ''
     });
   }
 
@@ -87,23 +62,23 @@ export class RugEditComponent implements OnInit {
       this.title = `Edit Rug: ${this.rug.id}: ${this.rug.name}`;
 
       this.rugForm.setValue({
-        form_n: this.rug.name,
-        form_i: this.rug.id,
-        form_a: this.rug.availability,
-        form_p: this.rug.price
+        formName: this.rug.name,
+        formId: this.rug.id,
+        formAv: this.rug.availability,
+        formPrice: this.rug.price
       });
     }
   }
 
-  saveRug(name: string, id: number, availability: string, price: number): void {
+  saveRug(): void {
     const r = {
-      name: name,
-      id: id,
-      availability: availability,
-      price: price
+      name: this.rugForm.value.formName,
+      id: this.rugForm.value.formId,
+      availability: this.rugForm.value.formAv,
+      price: this.rugForm.value.formPrice
     };
 
-    if (id === 0) {
+    if (this.title === 'Add Rug') {
       this.rugService.addRug(r).subscribe(
         () => console.log('Added')
       );
