@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+// const app = express();
 const rugRoutes = express.Router();
 
 let Rug = require('../models/Rug');

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵmarkDirty } from '@angular/core';
 import { Rug } from '../rug';
 import { RugService } from '../rug.service';
 
@@ -11,7 +11,13 @@ export class RugListComponent implements OnInit {
     rugs: Rug[];
     rug: Rug;
 
-    constructor(private rugService: RugService) { }
+    _filter: string;
+    filteredRugs: Rug[];
+
+    constructor(private rugService: RugService) {
+        this.filteredRugs = this.rugs;
+        this._filter = 'rug';
+    }
 
     ngOnInit(): void {
         this.refreshRugs();
@@ -28,9 +34,23 @@ export class RugListComponent implements OnInit {
         }
     }
 
-    private refreshRugs(){
+    private refreshRugs() {
         this.rugService.getRugs().subscribe(
             (rugs: Rug[]) => { this.rugs = rugs; }
+        );
+    }
+
+    get filter(): string {
+        return this._filter;
+    }
+    set filter(filter: string) {
+        this._filter = filter;
+        this.filteredRugs = this.filter ? this.perfromFilter(this.filter) : this.rugs;
+    }
+    private perfromFilter(filterBy: string): Rug[] {
+        filterBy.toLocaleLowerCase;
+        return this.rugs.filter(
+            (rug: Rug) => rug.name.toLocaleLowerCase().indexOf(filterBy) !== -1
         );
     }
 }

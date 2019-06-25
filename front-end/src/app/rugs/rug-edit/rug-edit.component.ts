@@ -81,14 +81,15 @@ export class RugEditComponent implements OnInit {
       this.rugService.addRug(r).subscribe(
         () => {
           console.log('Added');
+          this.onDone();
         });
     } else {
       this.rugService.updateRug(r).subscribe(
         () => {
           console.log('Updated');
+          this.onDone();
         });
     }
-    this.onDone();
   }
 
   onDone(): void {

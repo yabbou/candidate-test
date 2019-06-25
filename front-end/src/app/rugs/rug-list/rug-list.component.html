@@ -1,8 +1,22 @@
 <div class='card'>
     <div class='card-header'>{{title}}</div>
 
+    <div class='card-body'>
+        <div class='row'>
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+                <input class='ng-dirty' type='text' [(ngModel)]='filter' />
+            </div>
+        </div>
+        <div class='row' *ngIf='filter'>
+            <div class='col-md-6'>
+                <h4>Filtered by: {{filter}}</h4>
+            </div>
+        </div>
+    </div>
+
     <div class='table-responsive'>
-        <table class='table' *ngIf='rugs && rugs.length'>
+        <table class='table mb-0' *ngIf='rugs && rugs.length'>
             <thead>
                 <tr>
                     <th>Rug</th>
@@ -15,16 +29,17 @@
             </thead>
 
             <tbody>
-                <tr *ngFor='let rug of rugs'>
+                <tr *ngFor='let rug of filteredRugs'>
                     <td><a [routerLink]="['/rug-list', rug.id]">{{rug.name}}</a></td>
                     <td>{{rug.id}}</td>
                     <td>{{rug.availability}}</td>
                     <td>{{rug.price|currency:"USD":"symbol"}}</td>
                     <td>
                         <a [routerLink]="['/rug-list', rug.id, 'edit']" class="btn btn-outline-primary">Edit</a>
-                    </td> 
+                    </td>
                     <td>
-                        <a class="btn btn-outline-danger" (click)="deleteRug(rug)">Delete</a>
+                        <a class="btn btn-outline-danger" (click)="deleteRug(rug)" style="color:#dc3545"
+                            onMouseOver="this.style.color='white'" onMouseOut="this.style.color='#dc3545'">Delete</a>
                     </td>
                 </tr>
             </tbody>
