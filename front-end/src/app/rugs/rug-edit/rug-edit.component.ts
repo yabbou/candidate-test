@@ -24,7 +24,7 @@ export class RugEditComponent implements OnInit {
     this.createForm();
   }
 
-  private createForm() {
+  private createForm(): void {
     this.rugForm = this.builder.group({
       formName: ['', [Validators.required,
       Validators.minLength(3),
@@ -47,10 +47,9 @@ export class RugEditComponent implements OnInit {
   }
 
   getRug(id: number): void {
-    this.rugService.getRug(id)
-      .subscribe(
-        (rug: Rug) => { this.getForm(rug) }
-      );
+    this.rugService.getRug(id).subscribe(
+      (rug: Rug) => { this.getForm(rug) }
+    );
   }
 
   private getForm(rug: Rug): void {
@@ -80,12 +79,14 @@ export class RugEditComponent implements OnInit {
 
     if (this.title === 'Add Rug') {
       this.rugService.addRug(r).subscribe(
-        () => console.log('Added')
-      );
+        () => {
+          console.log('Added');
+        });
     } else {
       this.rugService.updateRug(r).subscribe(
-        () => console.log('Updated')
-      );
+        () => {
+          console.log('Updated');
+        });
     }
     this.onDone();
   }
@@ -95,7 +96,7 @@ export class RugEditComponent implements OnInit {
     this.router.navigate(['/rug-list']);
   }
 
-  onDestroy() {
+  onDestroy(): void {
     this.sub.unsubscribe();
   }
 }
