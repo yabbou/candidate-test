@@ -1,4 +1,7 @@
 thead {
     color: lightblue;
 }
+.table td{
+    vertical-align: middle;
+}
  

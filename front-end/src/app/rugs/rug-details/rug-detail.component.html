@@ -2,29 +2,29 @@
   <div class='card-header'>{{title + ': '+rug.name}}</div>
 
   <div class="card-body" *ngIf="rug">
+    <div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-3">Name:</div>
+          <div class="col-md-6">{{rug.name}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">ID:</div>
+          <div class="col-md-6">{{rug.id}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Availability:</div>
+          <div class="col-md-6">{{rug.availability}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Price:</div>
+          <div class="col-md-6">{{rug.price|currency:"USD":"symbol"}}</div>
+        </div>
 
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-3">Name:</div>
-        <div class="col-md-6">{{rug.name}}</div>
+        <!-- <div class="col-md-10"> -->
+        <img [title]='rug.name' [src]='rug.imageUrl'>
       </div>
-      <div class="row">
-        <div class="col-md-3">ID:</div>
-        <div class="col-md-6">{{rug.id}}</div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">Availability:</div>
-        <div class="col-md-6">{{rug.availability}}</div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">Price:</div>
-        <div class="col-md-6">{{rug.price|currency:"USD":"symbol"}}</div>
-      </div>
-      <div class="row">
-        <img *ngIf='showImage' [title]='rug.name' [src]='rug.imageUrl' [style.width.px]='80'
-          [style.margin.px]='10'>
 
-      </div>
     </div>
   </div>
 
