@@ -1,10 +1,19 @@
 <nav class='navbar-expand navbar-light bg-light'>
   <ul class='nav navbar-nav'>
-  <a class='navbar-brand'>{{title}}</a>
+    <a class='navbar-brand'>{{title}}</a>
 
-    <li><a class='nav-link' [routerLink]="['/home']">Home</a></li>
-    <li><a class='nav-link' [routerLink]="['/rug-list']">Rug List</a></li>
-    <li><a class='nav-link' [routerLink]="['/rug-list/0/edit']">Add Rug</a></li> 
+    <li class="nav-item" [routerLinkActive]="['active']">
+      <a class='nav-link' [routerLink]="['/home']">Home</a>
+    </li>
+
+    <li class="nav-item" [routerLinkActive]="['active']">
+      <a class='nav-link' [routerLink]="['/rug-list']">Rug List </a>
+    </li>
+
+    <li class="nav-item" [routerLinkActive]="['active']">
+      <a class='nav-link' [routerLink]="['/rug-list/0/edit']">Add Rug</a>
+    </li>
+    
   </ul>
 </nav>
 

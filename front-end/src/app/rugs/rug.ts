@@ -3,4 +3,5 @@ export interface Rug{
     id: number;
     availability: String;
     price: number;
+    imageUrl:string;
 }

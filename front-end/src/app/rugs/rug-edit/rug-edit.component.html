@@ -14,7 +14,7 @@
 
       <div class="form-group row mb-2">
         <label class="col-md-2">ID</label>
-        <div><input class="form-control" type=" text" placeholder="ID (Required)" formControlName="formId" /></div>
+        <div><input class="form-control" type=" text" placeholder="ID" formControlName="formId" /></div>
       </div>
 
       <div class="form-group row mb-2">
@@ -32,6 +32,11 @@
         <div class="is-invalid" *ngIf="rugForm.controls['formPrice'].invalid && rugForm.controls['formPrice'].touched">
           Price is required</div>
       </div>
+
+      <div class="form-group row mb-2">
+          <label class="col-md-2">Image Url</label>
+          <div><input class="form-control" type=" text" placeholder="Image Url" formControlName="formImage" /></div>
+        </div>
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary" [disabled]="!rugForm.valid">

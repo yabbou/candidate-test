@@ -5,7 +5,8 @@ let Rug = new Schema({
     name: String,
     id: Number,
     availability: String,
-    price: Number
+    price: Number,
+    imageUrl: String
 }, { collection: 'rugs' });
 
 module.exports = mongoose.model('Rug', Rug);

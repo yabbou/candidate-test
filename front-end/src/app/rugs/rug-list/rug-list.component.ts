@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵmarkDirty } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Rug } from '../rug';
 import { RugService } from '../rug.service';
 
@@ -13,6 +13,10 @@ export class RugListComponent implements OnInit {
 
     _filter: string;
     filteredRugs: Rug[];
+
+    imageWidth: number = 50;
+    imageMargin: number = 2;
+    showImage: boolean = false;
 
     constructor(private rugService: RugService) {
         this.filteredRugs = this.rugs;
@@ -52,5 +56,9 @@ export class RugListComponent implements OnInit {
         return this.rugs.filter(
             (rug: Rug) => rug.name.toLocaleLowerCase().indexOf(filterBy) !== -1
         );
+    }
+
+    toggleImage(): void {
+        this.showImage = !this.showImage;
     }
 }

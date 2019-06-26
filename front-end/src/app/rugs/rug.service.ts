@@ -27,7 +27,8 @@ export class RugService {
             id: 0,
             // id: this.model.find({ lastElement: { $slice: -1 } }).id + 1,
             availability: null,
-            price: 0
+            price: 0,
+            imageUrl: 'http://chittagongit.com/download/317461'
         };
     }
 

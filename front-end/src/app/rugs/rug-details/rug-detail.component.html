@@ -20,15 +20,26 @@
         <div class="col-md-3">Price:</div>
         <div class="col-md-6">{{rug.price|currency:"USD":"symbol"}}</div>
       </div>
+      <div class="row">
+        <img *ngIf='showImage' [title]='rug.name' [src]='rug.imageUrl' [style.width.px]='80'
+          [style.margin.px]='10'>
 
+      </div>
     </div>
   </div>
 
   <div class="card-footer">
-    <div class="col-md-4">
-      <button class="btn btn-outline-secondary mr-3" style="width:80px" (click)="onBack()" >
+    <div class="row">
+      <button class="btn btn-outline-secondary col-md-1" (click)="onBack()"
+        style="margin-left:20px; margin-right:10px;">
         Back
       </button>
+
+      <button class="btn btn-outline-danger col-md-1" (click)="deleteRug(rug)">
+        Delete
+      </button>
+
     </div>
+
   </div>
 </div>

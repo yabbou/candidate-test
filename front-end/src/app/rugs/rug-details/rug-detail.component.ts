@@ -3,6 +3,7 @@ import { Rug } from '../rug';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RugService } from '../rug.service';
 
+// import { RugListComponent } from '/Users/yaakov/Dropbox/Public/Code/WebStromProjects/rug-company/front-end/src/app/rugs/rug-list/rug-list.component';
 
 @Component({
   templateUrl: './rug-detail.component.html',
@@ -13,7 +14,8 @@ export class RugDetailComponent implements OnInit {
   rug: Rug;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private rugService: RugService) {
+    private rugService: RugService//, private rugListComponent: RugListComponent
+    ) {
   }
 
   ngOnInit() {
@@ -30,6 +32,10 @@ export class RugDetailComponent implements OnInit {
       rug => { this.rug = rug }
     );
   }
+
+  // deleteRug(rug: Rug): void {
+  //   this.rugListComponent.deleteRug(rug);
+  // }
 
   onBack(): void {
     this.router.navigate(['/rug-list']);

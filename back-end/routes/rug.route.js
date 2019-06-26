@@ -39,6 +39,7 @@ rugRoutes.route('/:id/update').put(function (req, res) {
             rug.id = req.body.id;
             rug.availability = req.body.availability;
             rug.price = req.body.price;
+            rug.imageUrl = req.body.imageUrl;
 
             rug.save().then(
                 rug => { res.status(200).json('Updated successfully'); })

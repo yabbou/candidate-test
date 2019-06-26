@@ -1,3 +1,6 @@
 .is-invalid{
     color: red
 }
+/* input.ng-invalid {
+  border-color: red;
+} */

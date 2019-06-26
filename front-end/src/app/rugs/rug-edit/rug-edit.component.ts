@@ -29,11 +29,12 @@ export class RugEditComponent implements OnInit {
       formName: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      formId: [''],
+      formId: '',
       formAv: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      formPrice: ''
+      formPrice: '',
+      formImage: 'http://chittagongit.com/download/317461'
     });
   }
 
@@ -60,11 +61,12 @@ export class RugEditComponent implements OnInit {
     } else {
       this.title = `Edit Rug: ${this.rug.id}: ${this.rug.name}`;
 
-      this.rugForm.setValue({
+      this.rugForm.patchValue({
         formName: this.rug.name,
         formId: this.rug.id,
         formAv: this.rug.availability,
-        formPrice: this.rug.price
+        formPrice: this.rug.price,
+        formImage: this.rug.imageUrl
       });
     }
   }
@@ -74,7 +76,8 @@ export class RugEditComponent implements OnInit {
       name: this.rugForm.value.formName,
       id: this.rugForm.value.formId,
       availability: this.rugForm.value.formAv,
-      price: this.rugForm.value.formPrice
+      price: this.rugForm.value.formPrice,
+      imageUrl: this.rugForm.value.formImage
     };
 
     if (this.title === 'Add Rug') {
