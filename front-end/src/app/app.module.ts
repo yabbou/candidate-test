@@ -11,7 +11,6 @@ import { RugDetailComponent } from './rugs/rug-details/rug-detail.component';
 import { RugEditComponent } from './rugs/rug-edit/rug-edit.component';
 
 import { RugService } from './rugs/rug.service';
-// import { RugModel } from '/Users/yaakov/Dropbox/Public/Code/WebStromProjects/rug-company/back-end/models/Rug';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { RugService } from './rugs/rug.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [RugService],
+  providers: [RugService,RugListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
