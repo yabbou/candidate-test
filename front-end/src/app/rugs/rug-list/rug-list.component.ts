@@ -11,14 +11,11 @@ export class RugListComponent implements OnInit {
     rugs: Rug[];
     rug: Rug;
 
-    _filter: string;
+    _filter: string = 'rug';
     filteredRugs: Rug[];
     showImage: boolean = false;
 
-    constructor(private rugService: RugService) {
-        this.filteredRugs = this.rugs;
-        this._filter = 'rug';
-    }
+    constructor(private rugService: RugService) { }
 
     ngOnInit(): void {
         this.refreshRugs();
@@ -37,7 +34,10 @@ export class RugListComponent implements OnInit {
 
     private refreshRugs() {
         this.rugService.getRugs().subscribe(
-            (rugs: Rug[]) => { this.rugs = rugs; }
+            (rugs: Rug[]) => {
+                this.rugs = rugs;
+                this.filteredRugs = this.rugs;
+            }
         );
     }
 
