@@ -19,6 +19,8 @@ export class RugEditComponent implements OnInit {
   sub: Subscription;
   validator: Validators;
 
+  size: number;
+
   constructor(private builder: FormBuilder, private rugService: RugService,
     private router: Router, private route: ActivatedRoute) {
     this.createForm();
@@ -29,7 +31,7 @@ export class RugEditComponent implements OnInit {
       formName: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
-      formId: '',
+      formId: this.size + 1,
       formAv: ['', [Validators.required,
       Validators.minLength(3),
       Validators.maxLength(25)]],
@@ -39,12 +41,19 @@ export class RugEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.createForm;
+    this.rugService.getRugs().subscribe(
+      rugs => {
+        this.size = rugs.length;
+        this.createForm();
+      }
+    )
+
     this.sub = this.route.paramMap.subscribe(
       params => {
         const id = +params.get('id');
         this.getRug(id);
       });
+
   }
 
   getRug(id: number): void {
