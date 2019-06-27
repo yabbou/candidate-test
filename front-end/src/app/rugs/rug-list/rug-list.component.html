@@ -19,7 +19,8 @@
         <table class='table mb-0' *ngIf='rugs && rugs.length'>
             <thead>
                 <tr>
-                    <th><button class="btn btn-primary" (click)='toggleImage()'>{{showImage?'Hide':'Show'}} Image</button></th>
+                    <th><button class="btn btn-primary" (click)='toggleImage()'>{{showImage?'Hide':'Show'}}
+                            Image</button></th>
                     <th>Rug</th>
                     <th>ID</th>
                     <th>Availability</th>
@@ -31,14 +32,14 @@
 
             <tbody>
                 <tr *ngFor='let rug of filteredRugs'>
-                    <td><img *ngIf='showImage' [title]='rug.name' [src]='rug.imageUrl' [style.width.px]='imageWidth'
-                            [style.margin.px]='imageMargin'></td>
+                    <td><img *ngIf='showImage' [title]='rug.name' [src]='rug.imageUrl' style="width: 50px;margin: 2px;">
+                    </td>
                     <td><a [routerLink]="['/rug-list', rug.id]">{{rug.name}}</a></td>
                     <td>{{rug.id}}</td>
                     <td>{{rug.availability}}</td>
                     <td>{{rug.price|currency:"USD":"symbol"}}</td>
                     <td>
-                        <a [routerLink]="['/rug-list', rug.id, 'edit']" class="btn btn-outline-primary">Edit</a>
+                        <a class="btn btn-outline-primary" [routerLink]="['/rug-list', rug.id, 'edit']">Edit</a>
                     </td>
                     <td>
                         <a class="btn btn-outline-danger" (click)="deleteRug(rug)" style="color:#dc3545"

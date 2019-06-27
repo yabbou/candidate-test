@@ -1,5 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+body{
+    background-color: rgb(220, 248, 248)
+}
+
 div.card-header{
     font-size: large;
 }

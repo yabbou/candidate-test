@@ -13,9 +13,6 @@ export class RugListComponent implements OnInit {
 
     _filter: string;
     filteredRugs: Rug[];
-
-    imageWidth: number = 50;
-    imageMargin: number = 2;
     showImage: boolean = false;
 
     constructor(private rugService: RugService) {
