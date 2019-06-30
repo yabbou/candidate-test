@@ -2,7 +2,25 @@ img{
     width: 300px;
     height: 300px;
 }
+
 .container{
     display: inline-flex;
-    padding: 10px;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.btn{
+    word-wrap: normal;
+    max-width: 70px;
+    margin: 2px; 
+}
+
+.card{
+    width: 750px;
+}
+
+div.col-md-3{
+    font-weight:bold;
+    max-width: 34%;
+    padding: 0px;
 }
