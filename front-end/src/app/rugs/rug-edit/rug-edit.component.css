@@ -1,16 +1,3 @@
-.is-invalid{
-    color: red;
-    font-size: 15px;
-}
-
-/* input:invalid {
-  border: 1px red;
-} */
-
-/* input:valid {
-  border: 1px #ced4da;
-} */
-
 .card{
   width: 750px;
 }

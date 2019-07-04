@@ -4,43 +4,101 @@
   <div class="card-body">
     <form novalidate [formGroup]="rugForm" (ngSubmit)="saveRug()">
 
-      <div class="form-group row mb-2">
-        <label class=" col-md-2 col-form-label">Rug Name</label>
-        <div><input class="form-control" type=" text" placeholder="Name (Required)" formControlName="formName" />
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label">Rug Name</label>
+        <div><input class="form-control" type=" text" placeholder="Name (Required)" formControlName="formName"
+            [ngClass]="{'is-invalid': 
+            (rugForm.controls['formName'].touched || 
+            rugForm.controls['formName'].dirty) &&
+            rugForm.controls['formName'].invalid }" />
+
+          <span class="invalid-feedback">
+            <span *ngIf="rugForm.controls['formName'].errors?.required">
+              Please enter rug name.
+            </span>
+
+            <span *ngIf="rugForm.controls['formName'].errors?.minlength">
+              The rug name must be longer than 3 characters.
+            </span>
+
+            <span *ngIf="rugForm.controls['formName'].errors?.maxlength">
+              The rug name must not exceed 18 characters.
+            </span>
+          </span>
+
         </div>
-        <div class="is-invalid" *ngIf="rugForm.controls['formName'].invalid && rugForm.controls['formName'].touched">
-          Name is required, and must be between 3 and 25 characters</div>
       </div>
 
-      <div class="form-group row mb-2">
+      <div class="form-group row">
         <label class="col-md-2">ID</label>
         <div><input class="form-control" type=" text" placeholder="ID" formControlName="formId" readonly=true /></div>
       </div>
 
-      <div class="form-group row mb-2">
+      <div class="form-group row">
         <label class="col-md-2">Availability</label>
-        <div> <input class="form-control" type=" text" placeholder="In/ Out-of-Stock" formControlName="formAv" />
+        <div> <input class="form-control" type=" text" placeholder="Stock (Required)" formControlName="formAv"
+            [ngClass]="{'is-invalid': 
+            (rugForm.controls['formAv'].touched || 
+            rugForm.controls['formAv'].dirty) &&
+            rugForm.controls['formAv'].invalid }" />
+
+          <span class="invalid-feedback">
+            <span *ngIf="rugForm.controls['formAv'].errors?.required">
+              Please enter availability status.
+            </span>
+
+            <span *ngIf="rugForm.controls['formAv'].errors?.minlength">
+              The status must be longer than 2 characters.
+            </span>
+
+            <span *ngIf="rugForm.controls['formAv'].errors?.maxlength">
+              The status must not exceed 10 characters.
+            </span>
+          </span>
+
         </div>
-        <div class="is-invalid" *ngIf="rugForm.controls['formAv'].invalid && rugForm.controls['formAv'].touched">
-          Availability is required, and must be between 3 and 25 characters</div>
       </div>
 
-      <div class="form-group row mb-2">
+      <div class="form-group row">
         <label class="col-md-2">Price</label>
         <div><input class="form-control" type="number" min="50" step="50" placeholder="Price (Required)"
-            formControlName="formPrice" />
+            formControlName="formPrice" [ngClass]="{'is-invalid': 
+            (rugForm.controls['formPrice'].touched || 
+            rugForm.controls['formPrice'].dirty) &&
+            rugForm.controls['formPrice'].invalid }" />
+
+          <span class="invalid-feedback">
+            <span *ngIf="rugForm.controls['formPrice'].errors?.required">
+              Please enter availability status.
+            </span>
+
+            <span *ngIf="rugForm.controls['formPrice'].errors?.minlength">
+              The price must be longer than 1 digit.
+            </span>
+
+            <span *ngIf="rugForm.controls['formPrice'].errors?.maxlength">
+              The price must not exceed 5 digits.
+            </span>
+          </span>
+
         </div>
-        <div class="is-invalid" *ngIf="rugForm.controls['formPrice'].invalid && rugForm.controls['formPrice'].touched">
-          Price is required. Must be number between 1 and 5 digits.</div>
       </div>
 
-      <div class="form-group row mb-2">
+      <div class="form-group row">
         <label class="col-md-2">Image Url</label>
         <div><input class="form-control" type=" text" placeholder="Image Url (Required)" formControlName="formImage"
-            required />
+            required [ngClass]="{'is-invalid': 
+            (rugForm.controls['formImage'].touched || 
+            rugForm.controls['formImage'].dirty) &&
+            rugForm.controls['formImage'].invalid }" />
+
+          <span class="invalid-feedback">
+            <span *ngIf="rugForm.controls['formImage'].errors?.required">
+              Please enter image URL. Default: http://chittagongit.com/download/317461
+            </span>
+          </span>
+
         </div>
-        <div class="is-invalid" *ngIf="rugForm.controls['formImage'].invalid && rugForm.controls['formImage'].touched">
-          Image URL is required. Default: http://chittagongit.com/download/317461</div>
       </div>
 
     </form>
