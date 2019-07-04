@@ -2,6 +2,15 @@
     color: red;
     font-size: 15px;
 }
-/* input.ng-invalid {
-  border-color: red;
+
+/* input:invalid {
+  border: 1px red;
 } */
+
+/* input:valid {
+  border: 1px #ced4da;
+} */
+
+.card{
+  width: 750px;
+}
