@@ -1,46 +1,28 @@
-# yabbou - Candidate-test
+# yabbou / Candidate-test
 Simple MEAN CRUD app
 
-Evaluation Criteria:
- 1) Does the app run? 
-  2) Is it buggy?
-  3) Ability to solve problems
-  4) Design decisions 
-  5) Ability to put togethera simple application 
-  6) Code clarity and documentation
+Instructions to run CRUD application:
 
-Technologies to use:
-Submit your source project using the following technologies:
-- AngularJS
-- Bootstrap or Material Design
-- MongoDB
-- Node.js
+Open a new terminal window in each step.
 
-Step 1
-Fork this repository and add your code and any assets we would require to take a look at your work. Structure your project as follows:
+Step 1:
+```
+cd ./front-end
+ng serve
+```
 
-    root folder
-        front-end -> AngularJS code
-        back-end -> Node.js
-        
-Step 2
-Create web services in Node.js to create, read, update and delete (CRUD) rugs from an inventory. Create a single page client application in AngularJS to consume the following web services:
-- Rug screen
-- List rugs
-- Button to delete a rug
-- New rug form
-- Rug details screen
+Step 2:
+```
+cd ./back-end
+nodemon server.js
+```
 
-Bonus
-- Add an option to search rugs by name
-- Add pictures of the rugs and display
-- Thumbnail in thumb list
-- larger image in rug details screen
+Step 3:
+```
+cd /usr/local/Cellar/mongodb/4.0.3_1/bin
+./mongod
+./mongo
+```
+Keep all three terminal windows running at all times.
 
-Other pointers
-- Focus first on making sure what you've build works well before adding more features
-- Commit as often as you can, we want to see how you progress. Don't do a massive commit at the end
-- Include an explanation with your project if you feel is necessary
-
-Good luck!
-If you have any questions please email jacobabbou@outlook.com
+If you have any questions, please email jacobabbou@outlook.com
