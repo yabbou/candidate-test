@@ -36,8 +36,7 @@ export class RugEditComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(10)]],
       formPrice: ['', [Validators.required,
-      Validators.minLength(1),
-      Validators.maxLength(5)]],
+      Validators.max(99999)]],
       formImage: 'http://chittagongit.com/download/317461'
     });
   }

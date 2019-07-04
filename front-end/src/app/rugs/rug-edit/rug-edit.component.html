@@ -69,14 +69,10 @@
 
           <span class="invalid-feedback">
             <span *ngIf="rugForm.controls['formPrice'].errors?.required">
-              Please enter availability status.
+              Please enter price.
             </span>
 
-            <span *ngIf="rugForm.controls['formPrice'].errors?.minlength">
-              The price must be longer than 1 digit.
-            </span>
-
-            <span *ngIf="rugForm.controls['formPrice'].errors?.maxlength">
+            <span *ngIf="rugForm.controls['formPrice'].errors?.max">
               The price must not exceed 5 digits.
             </span>
           </span>
@@ -86,7 +82,7 @@
 
       <div class="form-group row">
         <label class="col-md-2">Image Url</label>
-        <div><input class="form-control" type=" text" placeholder="Image Url (Required)" formControlName="formImage"
+        <div><input class="form-control" type="text" placeholder="Image Url (Required)" formControlName="formImage"
             required [ngClass]="{'is-invalid': 
             (rugForm.controls['formImage'].touched || 
             rugForm.controls['formImage'].dirty) &&
