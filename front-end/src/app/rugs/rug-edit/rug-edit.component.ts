@@ -90,18 +90,20 @@ export class RugEditComponent implements OnInit {
       imageUrl: this.rugForm.value.formImage
     };
 
-    if (this.title === 'Add Rug') {
-      this.rugService.addRug(r).subscribe(
-        () => {
-          console.log('Added');
-          this.onDone();
-        });
-    } else {
-      this.rugService.updateRug(r).subscribe(
-        () => {
-          console.log('Updated');
-          this.onDone();
-        });
+    if (confirm(`Are you sure you want to {{this.title | lowercase}}: ${r.name}?`)) {
+      if (this.title === 'Add Rug') {
+        this.rugService.addRug(r).subscribe(
+          () => {
+            console.log('Added');
+            this.onDone();
+          });
+      } else {
+        this.rugService.updateRug(r).subscribe(
+          () => {
+            console.log('Updated');
+            this.onDone();
+          });
+      }
     }
   }
 
