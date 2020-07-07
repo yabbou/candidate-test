@@ -24,5 +24,3 @@ cd /usr/local/Cellar/mongodb/4.0.3_1/bin
 ./mongo
 ```
 Keep all three terminal windows running at all times.
-
-If you have any questions, please email jacobabbou@outlook.com
